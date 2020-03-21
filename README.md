@@ -1,1 +1,1 @@
-# Tinei-Matewai
+# Tinei-Matewai [![Build Status](https://travis-ci.org/Tousinho/Tinei-Matewai.svg?branch=master)](https://travis-ci.org/Tousinho/Tinei-Matewai)
