@@ -1,5 +1,12 @@
 language: java
 sudo: false
-script: mvn clean install -f TineiMatewai
+jobs:
+  include:
+      - stage: test
+        script: "mvn clean test -f TineiMatewai"
+      - stage: cobertura
+        script: "mvn cobertura:cobertura"
 jdk:
   - oraclejdk11
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
