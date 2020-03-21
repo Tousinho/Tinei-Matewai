@@ -8,5 +8,3 @@ jobs:
         script: "mvn cobertura:cobertura -f TineiMatewai"
         after_success:
           - bash <(curl -s https://codecov.io/bash)
-jdk:
-  - oraclejdk11
