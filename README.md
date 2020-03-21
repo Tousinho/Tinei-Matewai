@@ -1,1 +1,2 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2dadfb9ff2e4ae6b5644c47d121885f)](https://app.codacy.com/gh/Tousinho/Tinei-Matewai?utm_source=github.com&utm_medium=referral&utm_content=Tousinho/Tinei-Matewai&utm_campaign=Badge_Grade_Dashboard)
 # Tinei-Matewai [![Build Status](https://travis-ci.org/Tousinho/Tinei-Matewai.svg?branch=master)](https://travis-ci.org/Tousinho/Tinei-Matewai)
