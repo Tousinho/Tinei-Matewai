@@ -8,6 +8,6 @@ jobs:
         after_success:
           - bash <(curl -s https://codecov.io/bash)
       - stage: Deploy Snapshot
-        script: "mvn clean deploy -DskipTests -f TineiMatewai"
+        script: "cp .travis.settings.xml $HOME/.m2/.settings.xml && mvn clean deploy -DskipTests -f TineiMatewai"
         after_success:
           - bash <(curl -s https://codecov.io/bash)
