@@ -7,5 +7,5 @@ jobs: # a collection of steps
     steps: # a collection of executable commands
       - checkout # check out source code to working directory
       - run: mvn clean test -f TineiMatewai
-      - store_test_results:
-        path: target/surefire-reports
+      - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+          path: target/surefire-reports
