@@ -20,6 +20,11 @@
             <artifactId>pi4j-core</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>it.sauronsoftware.cron4j</groupId>
+            <artifactId>cron4j</artifactId>
+            <version>2.2.5</version>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -48,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.tousinho.client.Client</mainClass>
+                            <mainClass>com.tousinho.client.WaterScheduler</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
