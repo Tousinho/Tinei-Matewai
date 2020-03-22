@@ -1,6 +1,9 @@
 language: java
 os: linux
 dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
 jobs:
   include:
       - stage: Test and Coverage
