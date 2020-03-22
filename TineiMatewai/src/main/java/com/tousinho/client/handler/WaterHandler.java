@@ -3,7 +3,7 @@ package com.tousinho.client.handler;
 import com.tousinho.client.controller.HumidityController;
 import com.tousinho.client.controller.PumpController;
 
-import static com.tousinho.client.constant.ConstantsUtils.LOW_THRESHOLD;
+import static com.tousinho.client.constant.ConstantsUtils.HUMIDITY_LOW_THRESHOLD;
 import static com.tousinho.client.constant.ConstantsUtils.WATER_SECONDS;
 
 public class WaterHandler implements Runnable {
@@ -17,7 +17,7 @@ public class WaterHandler implements Runnable {
 
     @Override
     public synchronized void run() {
-        if (humidityController.getHumidityValue() < LOW_THRESHOLD) {
+        if (humidityController.getHumidityValue() < HUMIDITY_LOW_THRESHOLD) {
             pumpController.setPinStatusHigh();
             try {
                 Thread.sleep(WATER_SECONDS * 1000);
