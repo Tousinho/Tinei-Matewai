@@ -1,11 +1,11 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    working_directory: ~/Tinei-Matewai # directory where steps will run
+    working_directory: ~/Tinei-Matewai/TineiMatewai # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
     steps: # a collection of executable commands
       - checkout # check out source code to working directory
-      - run: mvn clean test -f TineiMatewai
+      - run: mvn clean test
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: target/surefire-reports
