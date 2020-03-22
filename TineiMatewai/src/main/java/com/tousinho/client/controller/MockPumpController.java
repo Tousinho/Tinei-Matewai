@@ -1,6 +1,6 @@
 package com.tousinho.client.controller;
 
-import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.PinState;
 
 public class MockPumpController implements PumpController {
 
