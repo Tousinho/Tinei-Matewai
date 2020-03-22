@@ -6,3 +6,7 @@ jobs:
         script: "mvn clean test -f TineiMatewai"
         after_success:
           - bash <(curl -s https://codecov.io/bash)
+      - stage: Test and Coverage
+        script: "mvn clean deploy -DskipTests"
+        after_success:
+          - bash <(curl -s https://codecov.io/bash)
