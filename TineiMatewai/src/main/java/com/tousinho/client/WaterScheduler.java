@@ -4,7 +4,6 @@ import com.tousinho.client.controller.MockHumidityController;
 import com.tousinho.client.controller.MockPumpController;
 import com.tousinho.client.handler.WaterHandler;
 import com.tousinho.client.scheduler.RunnableScheduler;
-import it.sauronsoftware.cron4j.Scheduler;
 
 public class WaterScheduler {
 
