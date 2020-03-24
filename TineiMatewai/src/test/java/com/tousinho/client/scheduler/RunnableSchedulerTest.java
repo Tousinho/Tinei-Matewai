@@ -3,8 +3,6 @@ package com.tousinho.client.scheduler;
 import it.sauronsoftware.cron4j.Scheduler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
