@@ -3,44 +3,43 @@ package com.tousinho.client.controller;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
-import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.GpioFactory;
+import com.tousinho.client.configuration.PumpConfiguration;
 
 public class RaspberryPumpController implements PumpController {
-
-    private static RaspberryPumpController pumpController;
     private final GpioPinDigitalOutput pin;
+    private final PumpConfiguration pumpConfiguration;
 
-    public static RaspberryPumpController getInstance() {
-        if (pumpController == null) {
-            pumpController = new RaspberryPumpController();
-        }
-        return pumpController;
-    }
 
-    private RaspberryPumpController() {
-        final Pin gpioPin = RaspiPin.GPIO_01;
-        final GpioController gpio = GpioFactory.getInstance();
+    public RaspberryPumpController(Pin gpioPin,
+                                   GpioController gpio,
+                                   PumpConfiguration pumpConfiguration) {
+        this.pumpConfiguration = pumpConfiguration;
         pin = gpio.provisionDigitalOutputPin(gpioPin, "Pump", PinState.LOW);
     }
 
-    @Override
-    public PinState getPinState() {
-        return pin.getState();
-    }
-
-    @Override
-    public void setPinStatusHigh() {
+    private void setPinStatusHigh() {
         setStatus(PinState.HIGH);
     }
 
-    @Override
-    public void setPinStatusLow() {
+    private void setPinStatusLow() {
         setStatus(PinState.LOW);
+    }
+
+    @Override
+    public void putWater() {
+        setPinStatusHigh();
+        sleeping(pumpConfiguration.getWaterTimeInSecond());
+        setPinStatusLow();
     }
 
     private void setStatus(PinState pinState) {
         pin.setState(pinState);
+    }
+
+    private void sleeping(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException ignored) {}
     }
 }

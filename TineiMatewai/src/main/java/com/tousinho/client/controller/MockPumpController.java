@@ -1,39 +1,39 @@
 package com.tousinho.client.controller;
 
 import com.pi4j.io.gpio.PinState;
+import com.tousinho.client.configuration.PumpConfiguration;
 
 public class MockPumpController implements PumpController {
-
-    private static MockPumpController pumpController;
+    private final PumpConfiguration pumpConfiguration;
     private PinState pin;
 
-    public static MockPumpController getInstance() {
-        if (pumpController == null) {
-            pumpController = new MockPumpController();
-        }
-        return pumpController;
-    }
-
-    private MockPumpController() {
+    public MockPumpController(PumpConfiguration pumpConfiguration) {
+        this.pumpConfiguration = pumpConfiguration;
         pin = PinState.LOW;
     }
 
-    @Override
-    public PinState getPinState() {
-        return pin;
-    }
-
-    @Override
-    public void setPinStatusHigh() {
+    private void setPinStatusHigh() {
         setStatus(PinState.HIGH);
     }
 
-    @Override
-    public void setPinStatusLow() {
+    private void setPinStatusLow() {
         setStatus(PinState.LOW);
+    }
+
+    @Override
+    public void putWater() {
+        setPinStatusHigh();
+        sleeping(pumpConfiguration.getWaterTimeInSecond());
+        setPinStatusLow();
     }
 
     private void setStatus(PinState pinState) {
         pin = pinState;
+    }
+
+    private void sleeping(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException ignored) { }
     }
 }

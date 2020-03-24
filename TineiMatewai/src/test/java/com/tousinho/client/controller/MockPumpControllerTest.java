@@ -1,43 +1,25 @@
 package com.tousinho.client.controller;
 
-import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+import com.tousinho.client.configuration.PumpConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MockPumpControllerTest {
+    PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
     @Test
     public void shouldGetInstance() {
-        PumpController instance = MockPumpController.getInstance();
+        PumpController instance = new MockPumpController(pumpConfiguration);
         Assert.assertNotNull(instance);
     }
 
-    @Test
-    public void shouldSomeInstance() {
-        PumpController instance = MockPumpController.getInstance();
-        PumpController instance2 = MockPumpController.getInstance();
-        Assert.assertEquals(instance, instance2);
-    }
 
     @Test
-    public void shouldLowByDefault() {
-        PumpController instance = MockPumpController.getInstance();
-        PinState pinState = instance.getPinState();
-        Assert.assertEquals(pinState, PinState.LOW);
+    public void shouldPutWater() {
+        PumpController instance = new MockPumpController(pumpConfiguration);
+        instance.putWater();
+
     }
 
-    @Test
-    public void shouldHighIfSetHigh() {
-        PumpController instance = MockPumpController.getInstance();
-        instance.setPinStatusHigh();
-        PinState pinState = instance.getPinState();
-        Assert.assertEquals(pinState, PinState.HIGH);
-    }
 
-    @Test
-    public void shouldLowIfSetLow() {
-        PumpController instance = MockPumpController.getInstance();
-        instance.setPinStatusLow();
-        PinState pinState = instance.getPinState();
-        Assert.assertEquals(pinState, PinState.LOW);
-    }
 }
