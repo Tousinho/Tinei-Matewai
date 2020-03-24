@@ -9,7 +9,10 @@ import com.tousinho.client.configuration.PumpConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.InOrder;
+import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -22,9 +25,6 @@ public class RaspberryPumpControllerTest {
 
     @Mock
     GpioPinDigitalOutput resultPin;
-
-    @InjectMocks
-    private RaspberryPumpController runnableScheduler;
 
     PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
 
