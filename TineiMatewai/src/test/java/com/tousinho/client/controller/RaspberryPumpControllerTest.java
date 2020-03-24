@@ -1,18 +1,13 @@
 package com.tousinho.client.controller;
 
-import com.pi4j.io.gpio.Pin;
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.*;
 import com.tousinho.client.configuration.PumpConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.Mock;
 import org.mockito.InOrder;
-import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
