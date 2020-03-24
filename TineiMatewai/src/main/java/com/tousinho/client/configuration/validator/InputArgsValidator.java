@@ -10,9 +10,7 @@ public class InputArgsValidator {
         if (isNotAGpioValid(args[2])) return false;
         if ((args[1]).equals(args[2])) return false;
         if (isNotANumber(args[3])) return false;
-        if (isNotANumber(args[4])) return false;
-
-        return true;
+        return !isNotANumber(args[4]);
     }
 
     private boolean isNotAGpioValid(String value) {

@@ -5,11 +5,9 @@ import com.tousinho.client.configuration.PumpConfiguration;
 
 public class MockPumpController implements PumpController {
     private final PumpConfiguration pumpConfiguration;
-    private PinState pin;
 
     public MockPumpController(PumpConfiguration pumpConfiguration) {
         this.pumpConfiguration = pumpConfiguration;
-        pin = PinState.LOW;
     }
 
     private void setPinStatusHigh() {
@@ -28,7 +26,6 @@ public class MockPumpController implements PumpController {
     }
 
     private void setStatus(PinState pinState) {
-        pin = pinState;
     }
 
     private void sleeping(int seconds) {
