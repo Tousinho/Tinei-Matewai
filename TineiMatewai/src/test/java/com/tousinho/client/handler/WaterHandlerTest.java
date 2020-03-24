@@ -13,10 +13,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class WaterHandlerTest {
     @Mock
-    HumidityController humidityController;
+    private HumidityController humidityController;
 
     @Mock
-    PumpController pumpController;
+    private PumpController pumpController;
 
     @Test
     public void shouldInstance() {
