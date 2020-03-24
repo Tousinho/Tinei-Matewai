@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class MockHumidityControllerTest {
 
-    HumidityConfiguration humidityConfiguration = new HumidityConfiguration(RaspiPin.GPIO_00, 0);
+    private HumidityConfiguration humidityConfiguration = new HumidityConfiguration(RaspiPin.GPIO_00, 0);
 
     @Test
     public void shouldGetInstance() {
@@ -30,14 +30,14 @@ public class MockHumidityControllerTest {
     }
 
     @Test
-    public void ShouldReturnFalseIfValueIsGreaterThreshold() {
+    public void shouldReturnFalseIfValueIsGreaterThreshold() {
         HumidityController instance = new MockHumidityController(new HumidityConfiguration(RaspiPin.GPIO_00, 0));
         boolean timeToWater = instance.isTimeToWater();
         Assert.assertFalse(timeToWater);
     }
 
     @Test
-    public void ShouldReturnTrueIfValueIsLessThreshold() {
+    public void shouldReturnTrueIfValueIsLessThreshold() {
         HumidityController instance = new MockHumidityController(new HumidityConfiguration(RaspiPin.GPIO_00, 100));
         boolean timeToWater = instance.isTimeToWater();
         Assert.assertTrue(timeToWater);

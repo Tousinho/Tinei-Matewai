@@ -4,7 +4,8 @@ import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.RaspiPin;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 public class HumidityConfigurationTest {
     public static final Pin GPIO_00 = RaspiPin.GPIO_00;

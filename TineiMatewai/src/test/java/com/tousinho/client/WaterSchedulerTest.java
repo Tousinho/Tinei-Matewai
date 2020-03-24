@@ -66,5 +66,6 @@ public class WaterSchedulerTest {
     public void shouldReturnIfArgsIsNotCorrect() {
         String[] args = {};
         WaterScheduler.main(args);
+        Assert.assertNotNull(args);
     }
 }
