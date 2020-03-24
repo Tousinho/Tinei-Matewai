@@ -18,13 +18,13 @@ public class WaterSchedulerTest {
     public static final String WATER_IN_SECONDS = "10";
 
     @Mock
-    InputArgsValidator inputArgsValidator;
+    private InputArgsValidator inputArgsValidator;
 
     @Mock
-    InstanceConfigurationBuilder instanceConfigurationBuilder;
+    private InstanceConfigurationBuilder instanceConfigurationBuilder;
 
     @Mock
-    RunnableScheduler runnableScheduler;
+    private RunnableScheduler runnableScheduler;
 
     @Test
     public void shouldInstance() {
