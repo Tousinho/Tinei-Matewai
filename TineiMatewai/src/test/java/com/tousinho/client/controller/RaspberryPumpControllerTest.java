@@ -45,8 +45,8 @@ public class RaspberryPumpControllerTest {
         Mockito.doReturn(resultPin).when(gpioController).provisionDigitalOutputPin(Mockito.eq(pin), Mockito.anyString(), Mockito.eq(PinState.LOW));
 
         RaspberryPumpController raspberryPumpController = new RaspberryPumpController(pin, gpioController, pumpConfiguration);
+        Assert.assertNotNull(raspberryPumpController);
         raspberryPumpController.putWater();
-
         InOrder orderVerifier = Mockito.inOrder(resultPin);
         orderVerifier.verify(resultPin).setState(PinState.HIGH);
         orderVerifier.verify(resultPin).setState(PinState.LOW);
