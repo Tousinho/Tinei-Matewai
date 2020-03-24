@@ -3,12 +3,13 @@ package com.tousinho.client;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
 import com.tousinho.client.scheduler.RunnableScheduler;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
 public class WaterSchedulerTest {
@@ -29,7 +30,7 @@ public class WaterSchedulerTest {
     @Test
     public void shouldInstance() {
         WaterScheduler waterHandler = new WaterScheduler(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
-        Assert.assertNotNull(waterHandler);
+        assertNotNull(waterHandler);
     }
 
     @Test
@@ -42,6 +43,7 @@ public class WaterSchedulerTest {
 
         WaterScheduler waterHandler = new WaterScheduler(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
         waterHandler.run(args);
+        assertNotNull(waterHandler);
         InOrder orderVerifier = Mockito.inOrder(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
         orderVerifier.verify(inputArgsValidator).validate(args);
         orderVerifier.verify(instanceConfigurationBuilder).build(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
@@ -66,6 +68,6 @@ public class WaterSchedulerTest {
     public void shouldReturnIfArgsIsNotCorrect() {
         String[] args = {};
         WaterScheduler.main(args);
-        Assert.assertNotNull(args);
+        assertNotNull(args);
     }
 }
