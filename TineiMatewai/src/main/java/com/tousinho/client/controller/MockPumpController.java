@@ -10,23 +10,13 @@ public class MockPumpController implements PumpController {
         this.pumpConfiguration = pumpConfiguration;
     }
 
-    private void setPinStatusHigh() {
-        setStatus(PinState.HIGH);
-    }
 
-    private void setPinStatusLow() {
-        setStatus(PinState.LOW);
-    }
 
     @Override
     public void putWater() {
-        setPinStatusHigh();
         sleeping(pumpConfiguration.getWaterTimeInSecond());
-        setPinStatusLow();
     }
 
-    private void setStatus(PinState pinState) {
-    }
 
     private void sleeping(int seconds) {
         try {
