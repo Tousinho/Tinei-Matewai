@@ -18,15 +18,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class RaspberryPumpControllerTest {
     @Mock
-    Pin pin;
+    private Pin pin;
 
     @Mock
-    GpioController gpioController;
+    private GpioController gpioController;
 
     @Mock
-    GpioPinDigitalOutput resultPin;
+    private GpioPinDigitalOutput resultPin;
 
-    PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
+    private PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
 
     @Test
     public void shouldInstance() {

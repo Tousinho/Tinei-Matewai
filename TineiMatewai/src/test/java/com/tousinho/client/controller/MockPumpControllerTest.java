@@ -6,7 +6,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MockPumpControllerTest {
-    PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
+
+    private PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
+
     @Test
     public void shouldGetInstance() {
         PumpController instance = new MockPumpController(pumpConfiguration);
