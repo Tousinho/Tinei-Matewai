@@ -8,8 +8,12 @@ import com.tousinho.client.controller.MockPumpController;
 import com.tousinho.client.handler.WaterHandler;
 import com.tousinho.client.scheduler.RunnableScheduler;
 import it.sauronsoftware.cron4j.Scheduler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class WaterScheduler {
+    private static final Logger logger = LogManager.getLogger(WaterScheduler.class.getName());
 
     private final RunnableScheduler runnableScheduler;
     private final InputArgsValidator inputArgsValidator;
@@ -26,11 +30,15 @@ public class WaterScheduler {
     }
 
     public void run(String[] args) {
+        logger.info("Checking input parameter");
         boolean isValidArgument = validateInputArgs(args, inputArgsValidator);
-        if (!isValidArgument){
+        if (!isValidArgument) {
+            logger.info("Input Parameters are not valid!");
             return;
         }
+        logger.info("Getting configuration");
         InstanceConfiguration instanceConfiguration = getInstanceConfiguration(args, instanceConfigurationBuilder);
+        logger.info("Starting scheduling configuration");
         startAllScheduling(instanceConfiguration, runnableScheduler);
     }
 
@@ -44,11 +52,7 @@ public class WaterScheduler {
     }
 
     private static boolean validateInputArgs(String[] args, InputArgsValidator inputArgsValidator) {
-        boolean validate = inputArgsValidator.validate(args);
-        if (!validate) {
-            System.out.println("Inputs not valid!");
-        }
-        return validate;
+        return inputArgsValidator.validate(args);
     }
 
     private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler) {
