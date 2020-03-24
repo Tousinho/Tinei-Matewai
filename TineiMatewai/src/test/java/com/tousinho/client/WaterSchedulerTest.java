@@ -3,15 +3,12 @@ package com.tousinho.client;
 import com.tousinho.client.configuration.InstanceConfiguration;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
-import com.tousinho.client.handler.WaterHandler;
 import com.tousinho.client.scheduler.RunnableScheduler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
 public class WaterSchedulerTest {
