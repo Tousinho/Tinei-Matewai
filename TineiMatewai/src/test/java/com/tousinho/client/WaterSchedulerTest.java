@@ -4,6 +4,7 @@ import com.tousinho.client.configuration.InstanceConfiguration;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
 import com.tousinho.client.scheduler.RunnableScheduler;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -30,6 +31,7 @@ public class WaterSchedulerTest {
     @Test
     public void shouldInstance() {
         WaterScheduler waterHandler = new WaterScheduler(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
+        Assert.assertNotNull(waterHandler);
     }
 
     @Test
