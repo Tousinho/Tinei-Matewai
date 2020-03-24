@@ -5,11 +5,7 @@ import com.pi4j.io.gpio.RaspiPin;
 
 
 public class InstanceConfigurationBuilder {
-    //nome
-    //numero pumpgpio
-    //numero humigpio
-    //numero threashold humidity
-    //numero water in second
+
     public InstanceConfiguration build(String name, String pumpGPIO, String humidityGPIO, String humidityThreshold, String waterInSeconds) {
         return new InstanceConfiguration(
                 name,

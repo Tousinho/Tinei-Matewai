@@ -34,6 +34,7 @@ public class WaterScheduler {
         boolean isValidArgument = validateInputArgs(args, inputArgsValidator);
         if (!isValidArgument) {
             logger.info("Input Parameters are not valid!");
+            logger.info("Input Parameters should be: <Sensor_Name> <Pump_GPIO_Num> <Humidity_Sensor_GPIO_Num> <threshold_Humidity> <Water_In_Seconds>");
             return;
         }
         logger.info("Getting configuration");
