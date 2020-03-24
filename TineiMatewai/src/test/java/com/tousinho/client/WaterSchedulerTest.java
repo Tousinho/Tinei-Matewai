@@ -1,6 +1,5 @@
 package com.tousinho.client;
 
-import com.tousinho.client.configuration.InstanceConfiguration;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
 import com.tousinho.client.scheduler.RunnableScheduler;
@@ -26,8 +25,7 @@ public class WaterSchedulerTest {
 
     @Mock
     RunnableScheduler runnableScheduler;
-    @Mock
-    InstanceConfiguration instanceConfiguration;
+
     @Test
     public void shouldInstance() {
         WaterScheduler waterHandler = new WaterScheduler(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
