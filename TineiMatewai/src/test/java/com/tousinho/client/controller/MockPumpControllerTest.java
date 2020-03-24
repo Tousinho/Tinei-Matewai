@@ -18,7 +18,7 @@ public class MockPumpControllerTest {
     public void shouldPutWater() {
         PumpController instance = new MockPumpController(pumpConfiguration);
         instance.putWater();
-
+        Assert.assertNotNull(instance);
     }
 
 
