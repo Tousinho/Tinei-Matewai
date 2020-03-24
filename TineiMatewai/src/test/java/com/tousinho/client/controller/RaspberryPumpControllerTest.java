@@ -1,6 +1,10 @@
 package com.tousinho.client.controller;
 
-import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.Pin;
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.PinState;
 import com.tousinho.client.configuration.PumpConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
