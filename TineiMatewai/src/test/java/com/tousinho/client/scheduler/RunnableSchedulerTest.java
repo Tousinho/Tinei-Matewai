@@ -23,9 +23,6 @@ public class RunnableSchedulerTest {
     @InjectMocks
     private RunnableScheduler runnableScheduler;
 
-    @Captor
-    private ArgumentCaptor<String> stringCaptor;
-
     @Test
     public void shouldCall() {
         String cronExpression = "* * * * *";
