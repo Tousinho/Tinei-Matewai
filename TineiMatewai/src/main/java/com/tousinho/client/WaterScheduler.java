@@ -3,6 +3,7 @@ package com.tousinho.client;
 import com.tousinho.client.configuration.InstanceConfiguration;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
+import com.tousinho.client.controller.MetricsController;
 import com.tousinho.client.controller.MockHumidityController;
 import com.tousinho.client.controller.MockPumpController;
 import com.tousinho.client.handler.WaterHandler;
@@ -57,6 +58,6 @@ public class WaterScheduler {
     }
 
     private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler) {
-        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new MockHumidityController(instanceConfiguration.getHumidityConfiguration()), new MockPumpController(instanceConfiguration.getPumpConfiguration())));
+        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new MockHumidityController(instanceConfiguration.getHumidityConfiguration()), new MockPumpController(instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
     }
 }

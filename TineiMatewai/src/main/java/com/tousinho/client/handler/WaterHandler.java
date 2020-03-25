@@ -1,6 +1,7 @@
 package com.tousinho.client.handler;
 
 import com.tousinho.client.controller.HumidityController;
+import com.tousinho.client.controller.MetricsController;
 import com.tousinho.client.controller.PumpController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,11 +12,13 @@ public class WaterHandler implements Runnable {
 
     private HumidityController humidityController;
     private PumpController pumpController;
+    private MetricsController metricsController;
 
-    public WaterHandler(HumidityController humidityController, PumpController pumpController) {
+
+    public WaterHandler(HumidityController humidityController, PumpController pumpController, MetricsController metricsController) {
         this.humidityController = humidityController;
         this.pumpController = pumpController;
-
+        this.metricsController = metricsController;
     }
 
     @Override
@@ -24,6 +27,7 @@ public class WaterHandler implements Runnable {
         if (humidityController.isTimeToWater()) {
             logger.info("it's time to water!");
             pumpController.putWater();
+            metricsController.savePutWaterEvent();
         }
     }
 }
