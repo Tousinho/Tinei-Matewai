@@ -115,4 +115,10 @@
         </repository>
     </distributionManagement>
 
+    <scm>
+        <url>https://github.com/Tousinho/Tinei-Matewai</url>
+        <connection>scm:git:git@github.com:Tousinho/Tinei-Matewai.git</connection>
+        <developerConnection>scm:git:git@github.com:Tousinho/Tinei-Matewai.git</developerConnection>
+    </scm>
+
 </project>
