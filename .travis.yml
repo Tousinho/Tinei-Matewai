@@ -11,6 +11,7 @@ jobs:
         script: "mvn --settings .travis.settings.xml clean deploy -DskipTests -f TineiMatewai"
       - stage: Deploy Release
         script: "mvn --settings .travis.settings.xml clean release:prepare release:perform --batch-mode -DskipTests -f TineiMatewai"
+        github_token: ${env.GIT_TOKEN}
         branches:
           only:
             - master
