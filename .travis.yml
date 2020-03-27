@@ -11,3 +11,7 @@ jobs:
         script: "mvn --settings .travis.settings.xml clean deploy -DskipTests -f TineiMatewai"
         after_success:
           - bash <(curl -s https://codecov.io/bash)
+      - stage: Deploy Release
+        script: "mvn --settings .travis.settings.xml clean release:prepare release:perform --batch-mode -DskipTests -f TineiMatewai"
+        after_success:
+          - bash <(curl -s https://codecov.io/bash)
