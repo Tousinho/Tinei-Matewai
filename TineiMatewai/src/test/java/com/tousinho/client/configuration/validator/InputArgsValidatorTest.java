@@ -114,8 +114,8 @@ public class InputArgsValidatorTest {
     }
 
     @Test
-    public void shouldReturnFalseIfArg5isNotANumber() {
-        String[] args = new String[]{"MyName", "4", "2", "3", "NotANumber"};
+    public void shouldReturnFalseIfArg4isNotANumber() {
+        String[] args = new String[]{"MyName", "4", "2", "NotANumber"};
         boolean result = new InputArgsValidator().validate(args);
         assertFalse(result);
     }
