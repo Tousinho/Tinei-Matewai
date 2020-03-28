@@ -1,11 +1,13 @@
 package com.tousinho.client;
 
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
 import com.tousinho.client.configuration.InstanceConfiguration;
 import com.tousinho.client.configuration.InstanceConfigurationBuilder;
 import com.tousinho.client.configuration.validator.InputArgsValidator;
 import com.tousinho.client.controller.MetricsController;
-import com.tousinho.client.controller.mock.MockHumidityController;
-import com.tousinho.client.controller.mock.MockPumpController;
+import com.tousinho.client.controller.raspberry.RaspberryHumidityController;
+import com.tousinho.client.controller.raspberry.RaspberryPumpController;
 import com.tousinho.client.handler.WaterHandler;
 import com.tousinho.client.scheduler.RunnableScheduler;
 import it.sauronsoftware.cron4j.Scheduler;
@@ -17,17 +19,19 @@ public class WaterScheduler {
     private static final Logger logger = LogManager.getLogger(WaterScheduler.class.getName());
 
     private final RunnableScheduler runnableScheduler;
+    private final GpioController gpioController;
     private final InputArgsValidator inputArgsValidator;
     private final InstanceConfigurationBuilder instanceConfigurationBuilder;
 
     public static void main(String[] args) {
-        new WaterScheduler(new InputArgsValidator(), new InstanceConfigurationBuilder(), new RunnableScheduler(new Scheduler())).run(args);
+        new WaterScheduler(new InputArgsValidator(), new InstanceConfigurationBuilder(), new RunnableScheduler(new Scheduler()), GpioFactory.getInstance()).run(args);
     }
 
-    public WaterScheduler(InputArgsValidator inputArgsValidator, InstanceConfigurationBuilder instanceConfigurationBuilder, RunnableScheduler runnableScheduler) {
+    public WaterScheduler(InputArgsValidator inputArgsValidator, InstanceConfigurationBuilder instanceConfigurationBuilder, RunnableScheduler runnableScheduler, GpioController gpioController) {
         this.inputArgsValidator = inputArgsValidator;
         this.instanceConfigurationBuilder = instanceConfigurationBuilder;
         this.runnableScheduler = runnableScheduler;
+        this.gpioController = gpioController;
     }
 
     public void run(String[] args) {
@@ -41,12 +45,12 @@ public class WaterScheduler {
         logger.info("Getting configuration");
         InstanceConfiguration instanceConfiguration = getInstanceConfiguration(args, instanceConfigurationBuilder);
         logger.info("Starting scheduling configuration");
-        startAllScheduling(instanceConfiguration, runnableScheduler);
+        startAllScheduling(instanceConfiguration, runnableScheduler, gpioController);
     }
 
 
-    private static void startAllScheduling(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler) {
-        scheduleWaterHandler(instanceConfiguration, runnableScheduler);
+    private static void startAllScheduling(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler, GpioController gpioController) {
+        scheduleWaterHandler(instanceConfiguration, runnableScheduler, gpioController);
     }
 
     private static InstanceConfiguration getInstanceConfiguration(String[] args, InstanceConfigurationBuilder instanceConfigurationBuilder) {
@@ -57,7 +61,7 @@ public class WaterScheduler {
         return inputArgsValidator.validate(args);
     }
 
-    private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler) {
-        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new MockHumidityController(), new MockPumpController(instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
+    private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler, GpioController gpioController) {
+        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new RaspberryHumidityController(gpioController, instanceConfiguration.getHumidityConfiguration()), new RaspberryPumpController(gpioController, instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
     }
 }
