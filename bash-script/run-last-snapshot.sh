@@ -3,6 +3,9 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 JAR_ABSOLUTE_PATH="$SCRIPTPATH/Tinei-Matewai.jar"
 
+echo "Installing wiringpi"
+sudo apt-get install -y wiringpi > /dev/null
+
 echo "Cleaning space..."
 rm -f "$JAR_ABSOLUTE_PATH"
 echo "Downloading Tinei-Matewai.jar snapshot latest verion..."
