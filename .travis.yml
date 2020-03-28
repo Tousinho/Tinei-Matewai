@@ -12,5 +12,3 @@ jobs:
       - stage: Deploy Release
         script: "mvn --settings .travis.settings.xml clean release:prepare release:perform --batch-mode -DskipTests -f TineiMatewai"
         if: branch = master
-        before_install:
-          - echo -e "machine github.com\n  login $GIT_TOKEN" > ~/.netrc
