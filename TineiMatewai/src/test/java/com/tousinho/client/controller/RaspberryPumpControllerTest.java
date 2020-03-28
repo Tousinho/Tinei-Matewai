@@ -1,9 +1,8 @@
 package com.tousinho.client.controller;
 
-import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.tousinho.client.configuration.PumpConfiguration;
 import org.junit.Assert;
@@ -25,17 +24,19 @@ public class RaspberryPumpControllerTest {
     @Mock
     private GpioPinDigitalOutput resultPin;
 
-    private PumpConfiguration pumpConfiguration = new PumpConfiguration(RaspiPin.GPIO_01, 1);
+
 
     @Test
     public void shouldInstance() {
-        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(pin, gpioController, pumpConfiguration);
+        PumpConfiguration pumpConfiguration = new PumpConfiguration(pin, 1);
+        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(gpioController, pumpConfiguration);
         Assert.assertNotNull(raspberryPumpController);
     }
 
     @Test
     public void shouldInstancePin() {
-        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(pin, gpioController, pumpConfiguration);
+        PumpConfiguration pumpConfiguration = new PumpConfiguration(pin, 1);
+        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(gpioController, pumpConfiguration);
 
         Assert.assertNotNull(raspberryPumpController);
     }
@@ -44,7 +45,8 @@ public class RaspberryPumpControllerTest {
     public void shouldPutWater() {
         Mockito.doReturn(resultPin).when(gpioController).provisionDigitalOutputPin(Mockito.eq(pin), Mockito.anyString(), Mockito.eq(PinState.LOW));
 
-        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(pin, gpioController, pumpConfiguration);
+        PumpConfiguration pumpConfiguration = new PumpConfiguration(pin, 1);
+        RaspberryPumpController raspberryPumpController = new RaspberryPumpController(gpioController, pumpConfiguration);
         Assert.assertNotNull(raspberryPumpController);
         raspberryPumpController.putWater();
         InOrder orderVerifier = Mockito.inOrder(resultPin);

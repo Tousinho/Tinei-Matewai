@@ -2,7 +2,6 @@ package com.tousinho.client.controller;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.tousinho.client.configuration.PumpConfiguration;
 
@@ -11,11 +10,10 @@ public class RaspberryPumpController implements PumpController {
     private final PumpConfiguration pumpConfiguration;
 
 
-    public RaspberryPumpController(Pin gpioPin,
-                                   GpioController gpio,
+    public RaspberryPumpController(GpioController gpio,
                                    PumpConfiguration pumpConfiguration) {
         this.pumpConfiguration = pumpConfiguration;
-        pin = gpio.provisionDigitalOutputPin(gpioPin, "Pump", PinState.LOW);
+        pin = gpio.provisionDigitalOutputPin(pumpConfiguration.getPumpPin(), "Pump", PinState.LOW);
     }
 
     private void setPinStatusHigh() {
@@ -40,6 +38,7 @@ public class RaspberryPumpController implements PumpController {
     private void sleeping(int seconds) {
         try {
             Thread.sleep(seconds * 1000);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 }
