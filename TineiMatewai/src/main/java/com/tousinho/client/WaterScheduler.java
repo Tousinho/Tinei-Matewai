@@ -62,6 +62,6 @@ public class WaterScheduler {
     }
 
     private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler, GpioController gpioController) {
-        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new RaspberryHumidityController(gpioController, instanceConfiguration.getHumidityConfiguration()), new RaspberryPumpController(gpioController, instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
+        runnableScheduler.schedule("* * * * *", new WaterHandler(new RaspberryHumidityController(gpioController, instanceConfiguration.getHumidityConfiguration()), new RaspberryPumpController(gpioController, instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
     }
 }
