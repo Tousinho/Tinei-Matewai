@@ -2,15 +2,14 @@ package com.tousinho.client.configuration.validator;
 
 public class InputArgsValidator {
     public boolean validate(String[] args) {
-        if (args.length != 5) {
+        if (args.length != 4) {
             return false;
         }
 
         if (isNotAGpioValid(args[1])) return false;
         if (isNotAGpioValid(args[2])) return false;
         if ((args[1]).equals(args[2])) return false;
-        if (isNotANumber(args[3])) return false;
-        return !isNotANumber(args[4]);
+        return !isNotANumber(args[3]);
     }
 
     private boolean isNotAGpioValid(String value) {

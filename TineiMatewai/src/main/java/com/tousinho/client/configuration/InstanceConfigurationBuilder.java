@@ -6,10 +6,10 @@ import com.pi4j.io.gpio.RaspiPin;
 
 public class InstanceConfigurationBuilder {
 
-    public InstanceConfiguration build(String name, String pumpGPIO, String humidityGPIO, String humidityThreshold, String waterInSeconds) {
+    public InstanceConfiguration build(String name, String pumpGPIO, String humidityGPIO, String waterInSeconds) {
         return new InstanceConfiguration(
                 name,
-                new HumidityConfiguration(getRaspiPin(humidityGPIO), getInt(humidityThreshold)),
+                new HumidityConfiguration(getRaspiPin(humidityGPIO)),
                 new PumpConfiguration(getRaspiPin(pumpGPIO), getInt(waterInSeconds))
         );
     }

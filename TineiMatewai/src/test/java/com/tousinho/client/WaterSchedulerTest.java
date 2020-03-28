@@ -15,7 +15,6 @@ import static org.junit.Assert.assertNotNull;
 public class WaterSchedulerTest {
 
     public static final String MY_NAME = "MyName";
-    public static final String HUMIDITY_THRESHOLD = "42";
     public static final String WATER_IN_SECONDS = "10";
 
     @Mock
@@ -35,10 +34,10 @@ public class WaterSchedulerTest {
 
     @Test
     public void shouldExecuteInOrder() {
-        String[] args = {"Name", "1", "2", "3", "4"};
+        String[] args = {"Name", "1", "2", "3"};
 
         Mockito.when(inputArgsValidator.validate(args)).thenReturn(true);
-        Mockito.when(instanceConfigurationBuilder.build(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS));
+        Mockito.when(instanceConfigurationBuilder.build(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS));
 
 
         WaterScheduler waterHandler = new WaterScheduler(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
@@ -46,7 +45,7 @@ public class WaterSchedulerTest {
         assertNotNull(waterHandler);
         InOrder orderVerifier = Mockito.inOrder(inputArgsValidator, instanceConfigurationBuilder, runnableScheduler);
         orderVerifier.verify(inputArgsValidator).validate(args);
-        orderVerifier.verify(instanceConfigurationBuilder).build(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
+        orderVerifier.verify(instanceConfigurationBuilder).build(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
         orderVerifier.verify(runnableScheduler).schedule(Mockito.anyString(), Mockito.any());
     }
 

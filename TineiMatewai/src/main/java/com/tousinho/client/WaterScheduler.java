@@ -35,7 +35,7 @@ public class WaterScheduler {
         boolean isValidArgument = validateInputArgs(args, inputArgsValidator);
         if (!isValidArgument) {
             logger.info("Input Parameters are not valid!");
-            logger.info("Input Parameters should be: <Sensor_Name> <Pump_GPIO_Num> <Humidity_Sensor_GPIO_Num> <threshold_Humidity> <Water_In_Seconds>");
+            logger.info("Input Parameters should be: <Sensor_Name> <Pump_GPIO_Num> <Humidity_Sensor_GPIO_Num> <Water_In_Seconds>");
             return;
         }
         logger.info("Getting configuration");
@@ -50,7 +50,7 @@ public class WaterScheduler {
     }
 
     private static InstanceConfiguration getInstanceConfiguration(String[] args, InstanceConfigurationBuilder instanceConfigurationBuilder) {
-        return instanceConfigurationBuilder.build(args[0], args[1], args[2], args[3], args[4]);
+        return instanceConfigurationBuilder.build(args[0], args[1], args[2], args[3]);
     }
 
     private static boolean validateInputArgs(String[] args, InputArgsValidator inputArgsValidator) {
@@ -58,6 +58,6 @@ public class WaterScheduler {
     }
 
     private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler) {
-        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new MockHumidityController(instanceConfiguration.getHumidityConfiguration()), new MockPumpController(instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
+        runnableScheduler.schedule("*/10 0-6 * * *", new WaterHandler(new MockHumidityController(), new MockPumpController(instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
     }
 }

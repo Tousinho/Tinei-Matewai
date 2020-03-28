@@ -14,51 +14,45 @@ public class InstanceConfigurationBuilderTest {
 
     @Test
     public void shouldInstance() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertNotNull(result);
     }
 
     @Test
     public void shouldHumidityConfigurationNotNull() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertNotNull(result.getHumidityConfiguration());
     }
 
     @Test
     public void shouldPumpConfigurationNotNull() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertNotNull(result.getPumpConfiguration());
     }
 
     @Test
     public void shouldReturnName() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertEquals(MY_NAME, result.getSensorName());
     }
 
     @Test
     public void shouldReturnPumpGpio() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertEquals(RaspiPin.GPIO_01, result.getPumpConfiguration().getPumpPin());
     }
 
     @Test
     public void shouldReturnPumpWaterInSeconds() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertEquals(Integer.parseInt(WATER_IN_SECONDS), result.getPumpConfiguration().getWaterTimeInSecond());
     }
 
 
     @Test
     public void shouldReturnHumidityGpio() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
+        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", WATER_IN_SECONDS);
         assertEquals(RaspiPin.GPIO_02, result.getHumidityConfiguration().getHumiditySensorPin());
-    }
-
-    @Test
-    public void shouldReturnHumidityThreshold() {
-        InstanceConfiguration result = new InstanceConfigurationBuilder().build(MY_NAME, "1", "2", HUMIDITY_THRESHOLD, WATER_IN_SECONDS);
-        assertEquals(Integer.parseInt(HUMIDITY_THRESHOLD), result.getHumidityConfiguration().getHumidityLowThreshold());
     }
 
 }

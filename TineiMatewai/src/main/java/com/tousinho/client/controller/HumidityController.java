@@ -1,7 +1,8 @@
 package com.tousinho.client.controller;
 
-public interface HumidityController {
-    int getHumidityValue();
+import com.tousinho.client.controller.values.HumidityValue;
 
+public interface HumidityController {
+    HumidityValue getHumidityValue();
     boolean isTimeToWater();
 }

@@ -1,22 +1,16 @@
 package com.tousinho.client.controller;
 
-import com.tousinho.client.configuration.HumidityConfiguration;
+import com.tousinho.client.controller.values.HumidityValue;
 
 public class MockHumidityController implements HumidityController {
 
-    private final HumidityConfiguration humidityConfiguration;
-
-    public MockHumidityController(HumidityConfiguration humidityConfiguration) {
-        this.humidityConfiguration = humidityConfiguration;
-    }
-
     @Override
-    public int getHumidityValue() {
-        return 50;
+    public HumidityValue getHumidityValue() {
+        return HumidityValue.NEED_WATER;
     }
 
     @Override
     public boolean isTimeToWater() {
-        return getHumidityValue() < humidityConfiguration.getHumidityLowThreshold();
+        return getHumidityValue().equals(HumidityValue.NEED_WATER);
     }
 }
