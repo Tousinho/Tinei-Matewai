@@ -1,5 +1,6 @@
 [Unit]
 Description=Tinei
+After=network.target
 
 [Service]
 ExecStart=java -jar <JAR_PATH>
