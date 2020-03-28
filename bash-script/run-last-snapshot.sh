@@ -16,4 +16,4 @@ echo "Starting application..."
 
 #sudo systemctl start tinei
 #sudo systemctl enable tinei
-#java -jar "$JAR_ABSOLUTE_PATH"
+java -jar "$JAR_ABSOLUTE_PATH"
