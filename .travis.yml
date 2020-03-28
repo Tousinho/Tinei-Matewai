@@ -9,3 +9,6 @@ jobs:
           - bash <(curl -s https://codecov.io/bash)
       - stage: Deploy Snapshot
         script: "mvn --settings .travis.settings.xml clean deploy -DskipTests -f TineiMatewai"
+      - stage: Deploy Release
+        script: "mvn --settings .travis.settings.xml clean release:prepare release:perform --batch-mode -DskipTests -f TineiMatewai"
+        if: branch = master
