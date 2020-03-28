@@ -1,6 +1,7 @@
-package com.tousinho.client.controller;
+package com.tousinho.client.controller.mock;
 
 import com.tousinho.client.configuration.PumpConfiguration;
+import com.tousinho.client.controller.PumpController;
 
 public class MockPumpController implements PumpController {
     private final PumpConfiguration pumpConfiguration;

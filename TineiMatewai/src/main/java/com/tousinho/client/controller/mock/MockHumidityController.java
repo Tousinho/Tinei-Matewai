@@ -1,5 +1,6 @@
-package com.tousinho.client.controller;
+package com.tousinho.client.controller.mock;
 
+import com.tousinho.client.controller.HumidityController;
 import com.tousinho.client.controller.values.HumidityValue;
 
 public class MockHumidityController implements HumidityController {

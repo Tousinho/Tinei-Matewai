@@ -1,5 +1,6 @@
 package com.tousinho.client.controller;
 
+import com.tousinho.client.controller.mock.MockHumidityController;
 import org.junit.Assert;
 import org.junit.Test;
 

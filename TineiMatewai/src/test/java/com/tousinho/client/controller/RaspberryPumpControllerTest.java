@@ -5,6 +5,7 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.tousinho.client.configuration.PumpConfiguration;
+import com.tousinho.client.controller.raspberry.RaspberryPumpController;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

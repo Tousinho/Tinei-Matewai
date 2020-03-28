@@ -2,6 +2,7 @@ package com.tousinho.client.controller;
 
 import com.pi4j.io.gpio.RaspiPin;
 import com.tousinho.client.configuration.PumpConfiguration;
+import com.tousinho.client.controller.mock.MockPumpController;
 import org.junit.Assert;
 import org.junit.Test;
 

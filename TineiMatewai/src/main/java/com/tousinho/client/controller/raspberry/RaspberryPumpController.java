@@ -1,9 +1,10 @@
-package com.tousinho.client.controller;
+package com.tousinho.client.controller.raspberry;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinState;
 import com.tousinho.client.configuration.PumpConfiguration;
+import com.tousinho.client.controller.PumpController;
 
 public class RaspberryPumpController implements PumpController {
     private final GpioPinDigitalOutput pin;

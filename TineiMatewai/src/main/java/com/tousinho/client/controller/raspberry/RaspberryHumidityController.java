@@ -1,8 +1,9 @@
-package com.tousinho.client.controller;
+package com.tousinho.client.controller.raspberry;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.tousinho.client.configuration.HumidityConfiguration;
+import com.tousinho.client.controller.HumidityController;
 import com.tousinho.client.controller.values.HumidityValue;
 
 public class RaspberryHumidityController implements HumidityController {

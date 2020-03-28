@@ -2,6 +2,7 @@ package com.tousinho.client.controller;
 
 import com.pi4j.io.gpio.*;
 import com.tousinho.client.configuration.HumidityConfiguration;
+import com.tousinho.client.controller.raspberry.RaspberryHumidityController;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
