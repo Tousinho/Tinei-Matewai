@@ -25,7 +25,7 @@ public class MetricsControllerTest {
 
     @Test
     public void controllerGetDatabase() {
-        MetricsController controller = new MetricsController(mongoClient, "sersonName");
+        MetricsController controller = new MetricsController(mongoClient, "sensorName");
         Mockito.when(mongoClient.getDatabase(Mockito.anyString())).thenReturn(mongoDb);
         Mockito.when(mongoDb.getCollection(Mockito.anyString())).thenReturn(collection);
         controller.savePutWaterEvent();
@@ -35,7 +35,7 @@ public class MetricsControllerTest {
 
     @Test
     public void controllerGetCollection() {
-        MetricsController controller = new MetricsController(mongoClient, "sersonName");
+        MetricsController controller = new MetricsController(mongoClient, "sensorName");
         Mockito.when(mongoClient.getDatabase(Mockito.anyString())).thenReturn(mongoDb);
         Mockito.when(mongoDb.getCollection(Mockito.anyString())).thenReturn(collection);
         controller.savePutWaterEvent();
@@ -45,7 +45,7 @@ public class MetricsControllerTest {
 
     @Test
     public void controllerPutDocument() {
-        MetricsController controller = new MetricsController(mongoClient, "sersonName");
+        MetricsController controller = new MetricsController(mongoClient, "sensorName");
         Mockito.when(mongoClient.getDatabase(Mockito.anyString())).thenReturn(mongoDb);
         Mockito.when(mongoDb.getCollection(Mockito.anyString())).thenReturn(collection);
         controller.savePutWaterEvent();
@@ -55,7 +55,7 @@ public class MetricsControllerTest {
 
     @Test
     public void controllerPutDocumentWithSensorNameAndDateTime() {
-        MetricsController controller = new MetricsController(mongoClient, "sersonName");
+        MetricsController controller = new MetricsController(mongoClient, "sensorName");
         Mockito.when(mongoClient.getDatabase(Mockito.anyString())).thenReturn(mongoDb);
         Mockito.when(mongoDb.getCollection(Mockito.anyString())).thenReturn(collection);
         controller.savePutWaterEvent();
@@ -68,6 +68,6 @@ class DocumentMatcher implements ArgumentMatcher<Document> {
 
     @Override
     public boolean matches(Document right) {
-        return right.containsKey("sensorName") && right.containsKey("time");
+        return right.containsKey(MetricsController.SENSOR_NAME) && right.containsKey(MetricsController.TIME);
     }
 }

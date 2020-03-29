@@ -8,6 +8,10 @@ import org.bson.Document;
 import java.util.Date;
 
 public class MetricsController {
+    protected static final String SENSOR_NAME = "sensorName";
+    protected static final String TIME = "time";
+    public static final String DATABASE_NAME = "TineiMatewaiDB";
+    public static final String COLLECTION_NAME = "PutWaterEvents";
     private MongoClient mongoClient;
     private final String sensorName;
 
@@ -17,8 +21,8 @@ public class MetricsController {
     }
 
     public void savePutWaterEvent() {
-        MongoDatabase db = mongoClient.getDatabase("dbName");
-        MongoCollection<Document> collection = db.getCollection("collectionName");
-        collection.insertOne(new Document("sensorName", sensorName).append("time", new Date()));
+        MongoDatabase db = mongoClient.getDatabase(DATABASE_NAME);
+        MongoCollection<Document> collection = db.getCollection(COLLECTION_NAME);
+        collection.insertOne(new Document(SENSOR_NAME, sensorName).append(TIME, new Date()));
     }
 }
