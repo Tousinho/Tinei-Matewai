@@ -1,5 +1,6 @@
 package com.tousinho.client;
 
+import com.mongodb.MongoClient;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.tousinho.client.configuration.InstanceConfiguration;
@@ -62,6 +63,6 @@ public class WaterScheduler {
     }
 
     private static void scheduleWaterHandler(InstanceConfiguration instanceConfiguration, RunnableScheduler runnableScheduler, GpioController gpioController) {
-        runnableScheduler.schedule("* * * * *", new WaterHandler(new RaspberryHumidityController(gpioController, instanceConfiguration.getHumidityConfiguration()), new RaspberryPumpController(gpioController, instanceConfiguration.getPumpConfiguration()), new MetricsController(instanceConfiguration.getSensorName())));
+        runnableScheduler.schedule("* * * * *", new WaterHandler(new RaspberryHumidityController(gpioController, instanceConfiguration.getHumidityConfiguration()), new RaspberryPumpController(gpioController, instanceConfiguration.getPumpConfiguration()), new MetricsController(new MongoClient(), instanceConfiguration.getSensorName())));
     }
 }
