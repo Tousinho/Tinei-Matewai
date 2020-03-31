@@ -14,7 +14,6 @@ public class WaterHandler implements Runnable {
     private PumpController pumpController;
     private MetricsController metricsController;
 
-
     public WaterHandler(HumidityController humidityController, PumpController pumpController, MetricsController metricsController) {
         this.humidityController = humidityController;
         this.pumpController = pumpController;
